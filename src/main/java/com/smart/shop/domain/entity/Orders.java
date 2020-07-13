@@ -13,5 +13,5 @@ public class Orders implements Serializable {
     private Integer isPlay;
     private Timestamp createDate;
     private Timestamp updateDate;
-
+    private Integer version;
 }

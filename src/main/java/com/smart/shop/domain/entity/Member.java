@@ -19,4 +19,5 @@ public class Member implements Serializable {
     private Timestamp createDate;
     private Timestamp updateDate;
 
+
 }
