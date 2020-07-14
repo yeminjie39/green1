@@ -44,7 +44,13 @@ public class CartController {
 	//添加商品
 	@RequestMapping("/add")
 	public ResultDate<Integer> add(int mid,int num, Shop shop){
+		//查询是否存在商品
+		Cart cart = cartService.select(mid, shop.getSid());
 
+		if (cart!=null){
+			//证明该商品存在,修改数量
+
+		}
 
 		return null;
 	}

@@ -25,5 +25,5 @@ public interface CartService {
 	public Integer add(int mid,int num, Shop shop);
 
 	//查询商品
-	public Cart select(@Param("mid")int mid,@Param("sid")int sid);
+	public Cart select(int mid,int sid);
 }

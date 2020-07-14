@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class CartServiceImpl implements CartService {
+
 	//注入mapper层
 	@Resource
 	private CartMapper cartMapper;
@@ -28,20 +29,19 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public Integer updateCartById(int mid, int sid) {
 
-		return cartMapper.updateCartById(mid,sid);
+		return cartMapper.updateCartById(mid, sid);
 	}
 
 	@Override
 	public Integer add(int mid, int num, Shop shop) {
-		return null;
+		return 0;
 	}
-
 
 	@Override
 	public Cart select(int mid, int sid) {
-
-		return null;
+		return cartMapper.select(mid, sid);
 	}
+
 
 
 }
