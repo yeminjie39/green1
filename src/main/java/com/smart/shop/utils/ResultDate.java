@@ -16,7 +16,7 @@ public class ResultDate<T> {
         return resultDate;
     }
 
-    public static <T> ResultDate<T> Failure(Integer status,String msg){
+    public static <T> ResultDate<T> failure(Integer status,String msg){
         return success(status,msg,null);
     }
 }

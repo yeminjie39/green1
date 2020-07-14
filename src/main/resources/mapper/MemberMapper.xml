@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.shop.mapper.MemberMapper">
+    <resultMap id="memberbaseMap" type="Member">
+        <id property="mid" column="m_id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="realName" column="real_name"/>
+        <result property="idNumber" column="id_number"/>
+        <result property="sex" column="sex"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="address" column="address"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="isDel" column="is_del"/>
+    </resultMap>
+
+    <resultMap id="addressBaseMap" type="Address">
+        <id property="aid" column="a_id"/>
+        <result property="mid" column="m_id"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="detail" column="detail"/>
+    </resultMap>
+
+
+    <select id="select" resultMap="memberbaseMap">
+        SELECT  name, sex,real_name, id_number,  phone, email, address FROM member WHERE m_id=#{mid} and is_del=0
+    </select>
+    <update id="update">
+        UPDATE member
+        <trim prefix="set" suffixOverrides=",">
+            <if test="member.name != null and member.name != '' ">
+                name=#{member.name},
+            </if>
+            <if test="member.sex != null and member.sex != ''">
+                sex=#{member.sex},
+            </if>
+            <if test="member.address != null and member.address != ''">
+                address=#{member.address},
+            </if>
+            <if test="param1.phone != null and param1.phone != ''">
+                address=#{member.phone},
+            </if>
+            <if test="member.email != null and member.email != ''">
+                email=#{member.email},
+            </if>
+        </trim>
+            WHERE is_del=0 AND m_id=#{member.mid}
+    </update>
+    <update id="updatePassword">
+        UPDATE member SET password=#{password} where m_id=#{mid}
+    </update>
+    <select id="selectAddresses" resultMap="addressBaseMap">
+        SELECT  a.a_id, a.name, a.phone, a.detail FROM address a LEFT JOIN member m ON a.m_id = m.m_id WHERE m.m_id=#{mid} AND a.is_del=0
+    </select>
+    <update id="updateAddress" >
+        UPDATE address
+       <trim prefix="set" suffixOverrides=",">
+           <if test="address.detail != null and address.detail != ''">
+                detail=#{address.detail},
+           </if>
+           <if test="address.phone != null and address.phone != ''">
+               phone=#{address.phone},
+           </if>
+           <if test="address.name != null and address.name != ''">
+               name=#{address.name},
+           </if>
+       </trim>
+        WHERE is_del=0 AND m_id=#{address.mid} AND a_id=#{address.aid}
+    </update>
+    <insert id="insertAddress">
+        INSERT INTO address(m_id, name, phone, detail) VALUES (#{address.mid},#{address.name},#{address.phone},#{address.detail})
+    </insert>
+    <update id="deleteAddress">
+        UPDATE address SET is_del=1 WHERE m_id=#{mid} AND a_id=#{aid}
+    </update>
+</mapper>

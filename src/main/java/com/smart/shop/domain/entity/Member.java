@@ -4,6 +4,8 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
+
 @Data
 public class Member implements Serializable {
     private Integer mid;
@@ -16,6 +18,7 @@ public class Member implements Serializable {
     private  String email;
     private  String address;
     private Integer isDel;
+    private List<Address> addresses;
     private Timestamp createDate;
     private Timestamp updateDate;
 
