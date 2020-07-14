@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum  StatusType {
-    SUCCESS(1,"成功"),
-    FAILURE(0,"失败");
+    SUCCESS(200,"成功"),
+    FAILURE(400,"失败");
     private int value;
     private String msg;
 

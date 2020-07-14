@@ -11,11 +11,12 @@ public class Shop implements Serializable {
     private String classify;
     private String title;
     private BigDecimal price;
+    private BigDecimal realityPrice;
     private Integer stock;
     private String pic;
     private Integer isDel;
     private Timestamp createDate;
     private Timestamp updateDate;
-
+    private int version;
 
 }

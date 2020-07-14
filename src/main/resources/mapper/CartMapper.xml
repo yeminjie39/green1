@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.shop.mapper.CartMapper">
+  <update id="updateCartById">
+    UPDATE cart c SET c.`is_del`=1      WHERE c.`m_id`=#{mid} AND c.`s_id`=#{sid}
+  </update>
+  <select id="findAll" parameterType="int" resultType="com.smart.shop.domain.dto.CartDto">
+    SELECT c.num,s.title,s.reality_price AS realityPrice,s.pic FROM  cart c  JOIN shop s ON c.`s_id`=s.`s_id`  AND c.`m_id`=#{mid}
+  </select>
+  <select id="select" resultType="com.smart.shop.domain.entity.Cart">
+    SELECT * FROM cart WHERE is_del =0 AND cart.`m_id`=#{mid} AND cart.`s_id`=#{sid}
+  </select>
+</mapper>
