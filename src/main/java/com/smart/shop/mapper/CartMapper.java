@@ -19,4 +19,10 @@ public interface CartMapper {
 
 	//查询是否存在商品
 	public Cart select(@Param("mid")int mid,@Param("sid")int sid);
+
+	//更新商品数量
+	public int updateCartByNum(@Param("cid")int cid,@Param("num") int num);
+
+	//添加到购物车
+	int insert(@Param("ct") Cart ct);
 }

@@ -26,4 +26,10 @@ public interface CartService {
 
 	//查询商品
 	public Cart select(int mid,int sid);
+
+	//更新商品数量
+	public int updateCartByNum(int cid,int num);
+
+	//添加到购物车
+	int insert(Cart ct);
 }
